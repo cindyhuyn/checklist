@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Table #1</title>
+  </head>
+  <body>
+  <script type="text/javascript">
+    function ShowHideDiv(chkPassport) {
+        var dvPassport = document.getElementById("dvPassport");
+        dvPassport.style.display = chkPassport.checked ? "block" : "none";
+    }
+	function FilterRows() {
+		$(document).ready(function($) {
+			$('table').hide();
+			$('#solutionSelect').change(function() {
+				$('table').show();
+				var selection = $(this).val();
+				var dataset = $('#table5 tbody').find('tr');
+				// show all rows first
+				dataset.show();
+				// filter the rows that should be hidden
+				dataset.filter(function(index, item) {
+				  return $(item).find('td:first-child').text().split(',').indexOf(selection) === -1;
+				}).hide();
+			});
+		});
+    }
+			
+	function myFunction() {
+    $('table').hide();
+    $('#solutionSelect').change( function(){
+      $('table').show();
+      var selection = $(this).val();
+      var dataset = $('#table5').find('tr');
+
+      dataset.each(function(index) {
+        item = $(this);
+        item.hide();
+
+        var firstTd = item.find('td:first-child');
+        var text = firstTd.text();
+        var ids = text.split(',');
+
+        for (var i = 0; i < ids.length; i++)
+        {
+            if (ids[i] == selection)
+          {
+            item.show();
+          }
+        }
+      });
+    });
+}
+
+$("#mySelector").on("change",
+           function(){
+               var a = $(this).find("option:selected").html();
+
+               $("table tr td:first-child").each(
+                   function(){
+                       if($(this).html() != a){
+                           $(this).parent().hide();
+                       }
+                       else{
+                           $(this).parent().show();
+                       }
+                   });
+           }); 
+</script>
+<!--
+	$('#mySelector').change( function(){
+	  var selection = $(this).val();
+	  var dataset = $('#myTable tbody').find('tr');
+	  
+	  dataset.each(function(index) {
+		item = $(this);
+		item.hide();
+		
+		var firstTd = item.find('td:nth-child(2)');
+		var text = firstTd.text();
+		var ids = text.split(',');
+		
+		for (var i = 0; i < ids.length; i++)
+		{
+			if (ids[i] == selection)
+		  {
+			item.show();
+		  }
+		}
+	  });
+	});
+-->
+
+<script type="text/javascript">
+     function hide(div_id) {
+           document.getElementById(div_id).style.display = "none";
+     }
+</script>
+
+  <div class="content">
+  
+	<center>
+		<label id='mySelector'>Solution:</label>
+		<select name="solution" id="solution">
+			<option value="SF">SWFDE/FE</option>
+			<option value="PF">PE/FE</option>
+			<option value="HF">HWFDE/FE</option>
+			<option value="HS">HWFDE/SWFDE</option>
+			<option value="HH">HWFDE/HWFDE</option>
+		</select>
+		<label for="useCaseSelect">Use Case:</label>
+		<select name="solution" id="solution">
+			<option value="LF">Lost and Found</option>
+			<option value="RM">Removable Media</option>
+			<option value="EM">Enterprise Management</option>
+			<option value="UO">Unattended Operations</option>
+			<option value="GA">Generally Applicable</option>
+		</select>
+		<button type="button" onclick="FilterRows()">Go</button>
+	</center>
+	
+	<BR/>
+	<BR/>
+	<BR/>
+	<BR/>
+
+    <div class="container">
+      <h2 class="mb-5">Table 5: Product Selection Requirements</h2>
+
+      <div class="table-responsive">
+
+        <table id='myTable' class="table custom-table">
+          <thead>
+            <tr>
+              <th scope="col">
+                <label for="chkPassport" class="control control--checkbox">
+                  <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" class="js-check-all"/>
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <th scope="col">Req #</th>
+              <th scope="col">Requirement Description</th>
+              <th scope="col">Solution Designs</th>
+              <th scope="col">Use Case</th>
+              <th scope="col">Threshold/Objective</th>
+			  <th scope="col">Alternative</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="row1">
+              <th scope="row">
+                <label class="control control--checkbox">
+                  <input type="checkbox" onclick="hide('row1')" />
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <td>DAR-PS-1</td>
+              <td>The products used for the FE layer must be chosen from the list of FE products on the CSfC Components List.</td>
+              <td>HF, SF, PF</td>
+              <td>EM, GA, LF, RM, UO</td>
+              <td>T=O</td>
+			  <td> </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label class="control control--checkbox">
+                  <input type="checkbox" onclick="ShowHideDev(this)" />
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <td>DAR-PS-2</td>
+              <td>The products used for the SWFDE layer must be chosen from the list of SWFDEs on the CSfC Components List. </td>
+              <td>HF, SF</td>
+              <td>EM, GA, LF, RM, UO</td>
+              <td>T=O</td>
+			  <td> </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <label class="control control--checkbox">
+                  <input type="checkbox" onclick="ShowHideDev(this)" />
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <td>DAR-PS-3</td>
+              <td>The Inner and Outer DAR layers must either: 
+</BR>•	Come from different manufacturers, where neither manufacturer is a subsidiary of the other; or 
+</BR>•	Be different products from the same manufacturer, where NSA has determined that the products meet the CSfC Program’s criteria for 
+implementation independence. </td>
+              <td>HF, HS, SF, PF, HH</td>
+              <td>EM, GA, LF, RM, UO</td>
+              <td>T=O</td>
+			  <td> </td>
+			  
+            </tr>
+            <tr>
+              <th scope="row">
+                <label class="control control--checkbox">
+                  <input type="checkbox" onclick="ShowHideDev(this)" />
+                  <div class="control__indicator"></div>
+                </label>
+              </th>
+              <td>DAR-PS-4</td>
+              <td>(Moved to DAR-SC-2)</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+			  <td> </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+
+  </div>
+    
+    
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
