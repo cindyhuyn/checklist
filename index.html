@@ -55,8 +55,9 @@
   <div class="content">
   
 	<center>
-		<label id='mySelector'>Solution:</label>
+		<label for='solution'>Solution:</label>
 		<select name="solution" id="solution">
+      <option value="" style="text-align:center">-- Select --</option>
 			<option value="SF">SWFDE/FE</option>
 			<option value="PF">PE/FE</option>
 			<option value="HF">HWFDE/FE</option>
@@ -64,14 +65,15 @@
 			<option value="HH">HWFDE/HWFDE</option>
 		</select>
 		<label for="useCaseSelect">Use Case:</label>
-		<select name="solution" id="solution">
+		<select name="solution" id="useCaseSelect">
+      <option value="" style="text-align:center">--------- Select ---------</option>
 			<option value="LF">Lost and Found</option>
 			<option value="RM">Removable Media</option>
 			<option value="EM">Enterprise Management</option>
 			<option value="UO">Unattended Operations</option>
 			<option value="GA">Generally Applicable</option>
 		</select>
-		<button type="button" onclick="FilterRows()">Go</button>
+		<!-- <button type="button" onclick="FilterRows()">Go</button> -->
 	</center>
 	
 	<BR/>
@@ -90,23 +92,17 @@
 
         <table id='myTable' class="table custom-table">
           <thead>
-            <tr>
-              <th scope="col">
-                <label for="chkPassport" class="control control--checkbox">
-                  <input type="checkbox" id="chkPassport" onclick="ShowHideDiv(this)" class="js-check-all"/>
-                  <div class="control__indicator"></div>
-                </label>
-              </th>
+              <th scope="col"></th>
               <th scope="col">Req #</th>
               <th scope="col">Requirement Description</th>
               <th scope="col">Solution Designs</th>
               <th scope="col">Use Case</th>
               <th scope="col">Threshold/Objective</th>
-			  <th scope="col">Alternative</th>
-            </tr>
+			        <th scope="col">Alternative</th>
+           
           </thead>
           <tbody>
-            <tr id="row1">
+            <tr id="row1" data-soln="SF" data-use-case="EM, LF, RM, UO">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox" />
@@ -116,11 +112,11 @@
               <td>DAR-PS-1</td>
               <td>The products used for the FE layer must be chosen from the list of FE products on the CSfC Components List.</td>
               <td>HF, SF, PF</td>
-              <td>EM, GA, LF, RM, UO</td>
+              <td>EM, LF, RM, UO</td>
               <td>T=O</td>
-			  <td> </td>
+			        <td></td>
             </tr>
-            <tr id="row2">
+            <tr id="row2" data-soln="PF" data-use-case="EM, GA, LF, RM, UO">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox"/>
@@ -134,7 +130,7 @@
               <td>T=O</td>
 			  <td> </td>
             </tr>
-            <tr id="row3">
+            <tr id="row3" data-soln="PF" data-use-case="EM, GA, RM, UO">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox" />
@@ -147,12 +143,12 @@
 </BR>•	Be different products from the same manufacturer, where NSA has determined that the products meet the CSfC Program’s criteria for 
 implementation independence. </td>
               <td>HF, HS, SF, PF, HH</td>
-              <td>EM, GA, LF, RM, UO</td>
+              <td>EM, GA, RM, UO</td>
               <td>T=O</td>
 			  <td> </td>
 			  
             </tr>
-            <tr id="row4">
+            <tr id="row4" data-soln="" data-use-case="">
               <th scope="row">
                 <label class="control control--checkbox">
                   <input type="checkbox"/>
