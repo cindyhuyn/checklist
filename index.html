@@ -20,67 +20,7 @@
   </head>
   <body>
   <script type="text/javascript">
-    function ShowHideDiv(chkPassport) {
-        var dvPassport = document.getElementById("dvPassport");
-        dvPassport.style.display = chkPassport.checked ? "block" : "none";
-    }
-	function FilterRows() {
-		$(document).ready(function($) {
-			$('table').hide();
-			$('#solutionSelect').change(function() {
-				$('table').show();
-				var selection = $(this).val();
-				var dataset = $('#table5 tbody').find('tr');
-				// show all rows first
-				dataset.show();
-				// filter the rows that should be hidden
-				dataset.filter(function(index, item) {
-				  return $(item).find('td:first-child').text().split(',').indexOf(selection) === -1;
-				}).hide();
-			});
-		});
-    }
-			
-	function myFunction() {
-    $('table').hide();
-    $('#solutionSelect').change( function(){
-      $('table').show();
-      var selection = $(this).val();
-      var dataset = $('#table5').find('tr');
-
-      dataset.each(function(index) {
-        item = $(this);
-        item.hide();
-
-        var firstTd = item.find('td:first-child');
-        var text = firstTd.text();
-        var ids = text.split(',');
-
-        for (var i = 0; i < ids.length; i++)
-        {
-            if (ids[i] == selection)
-          {
-            item.show();
-          }
-        }
-      });
-    });
-}
-
-$("#mySelector").on("change",
-           function(){
-               var a = $(this).find("option:selected").html();
-
-               $("table tr td:first-child").each(
-                   function(){
-                       if($(this).html() != a){
-                           $(this).parent().hide();
-                       }
-                       else{
-                           $(this).parent().show();
-                       }
-                   });
-           }); 
+    
 </script>
 <!--
 	$('#mySelector').change( function(){
@@ -141,7 +81,11 @@ $("#mySelector").on("change",
 
     <div class="container">
       <h2 class="mb-5">Table 5: Product Selection Requirements</h2>
-
+      <div class="table-filters">
+        <button id="show-uncompleted">Show Uncompleted</button>
+        <button id="show-completed">Show Completed</button>
+        <button id="show-all">Show All</button>
+      </div>
       <div class="table-responsive">
 
         <table id='myTable' class="table custom-table">
@@ -165,7 +109,7 @@ $("#mySelector").on("change",
             <tr id="row1">
               <th scope="row">
                 <label class="control control--checkbox">
-                  <input type="checkbox" onclick="hide('row1')" />
+                  <input type="checkbox" />
                   <div class="control__indicator"></div>
                 </label>
               </th>
@@ -179,7 +123,7 @@ $("#mySelector").on("change",
             <tr id="row2">
               <th scope="row">
                 <label class="control control--checkbox">
-                  <input type="checkbox" onclick="hide('row2')" />
+                  <input type="checkbox"/>
                   <div class="control__indicator"></div>
                 </label>
               </th>
@@ -193,7 +137,7 @@ $("#mySelector").on("change",
             <tr id="row3">
               <th scope="row">
                 <label class="control control--checkbox">
-                  <input type="checkbox" onclick="hide('row3')" />
+                  <input type="checkbox" />
                   <div class="control__indicator"></div>
                 </label>
               </th>
@@ -211,7 +155,7 @@ implementation independence. </td>
             <tr id="row4">
               <th scope="row">
                 <label class="control control--checkbox">
-                  <input type="checkbox" onclick="hide('row4')" />
+                  <input type="checkbox"/>
                   <div class="control__indicator"></div>
                 </label>
               </th>
